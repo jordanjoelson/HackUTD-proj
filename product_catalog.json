@@ -1,0 +1,135 @@
+{
+    "products": [
+      {
+        "name": "Fiber 500",
+        "features": [
+          "500Mbps Connection",
+          "Includes one standard WIFI router"
+        ],
+        "price": "$45/mo"
+      },
+      {
+        "name": "Fiber 1 Gig",
+        "features": [
+          "1Gbps Connection",
+          "Includes one standard WIFI router"
+        ],
+        "price": "$65/mo"
+      },
+      {
+        "name": "Fiber 2 Gig",
+        "features": [
+          "2Gbps Connection",
+          "Includes one upgraded WIFI router",
+          "Includes one extender"
+        ],
+        "price": "$99/mo"
+      },
+      {
+        "name": "Additional Extender",
+        "features": [
+          "Additional extender for above products"
+        ],
+        "price": "$5/mo per extender"
+      },
+      {
+        "name": "Fiber 5 Gig",
+        "features": [
+          "5Gbps Connection",
+          "Includes one premium router"
+        ],
+        "price": "$129/mo"
+      },
+      {
+        "name": "Fiber 7 Gig",
+        "features": [
+          "7Gbps Connection",
+          "Includes one premium router",
+          "Includes an extender at no charge"
+        ],
+        "price": "$299/mo"
+      },
+      {
+        "name": "Whole Home WIFI",
+        "features": [
+          "Get the latest generation router with up to two additional extenders provided to Fiber 2 Gig speeds and below",
+          "One extender for 5 and 7 Gig speeds to ensure strong Wi-Fi throughout the home"
+        ],
+        "price": "$10.00/mo"
+      },
+      {
+        "name": "Unbreakable Wi-Fi",
+        "features": [
+          "Backup internet during unexpected Frontier fiber network outages",
+          "Automatic switchover during network outages and back to fiber when restored",
+          "130GB of 4G LTE cellular data per month",
+          "Battery backup option (up to 4 hours)"
+        ],
+        "price": "$25.00/mo"
+      },
+      {
+        "name": "Battery back-up for Unbreakable Wi-Fi",
+        "features": [
+          "Optional Battery Backup Unit",
+          "Up to 4 hours of power during outages"
+        ],
+        "price": "$130.00 one-time"
+      },
+      {
+        "name": "Wi-Fi Security",
+        "features": [
+          "Advanced security managed via the app",
+          "Protects devices from malicious sites, scams, and phishing",
+          "Parental controls and ad blocking"
+        ],
+        "price": "$5.00/mo"
+      },
+      {
+        "name": "Wi-Fi Security Plus",
+        "features": [
+          "Wi-Fi Security, Multi-Device Security, VPN, and Password Manager",
+          "Protects devices connected to home network and up to 3 devices while away",
+          "Password Manager for 1 master password for all devices"
+        ],
+        "price": "$10.00/mo"
+      },
+      {
+        "name": "Total Shield",
+        "features": [
+          "Security (anti-virus) for up to 10 devices",
+          "VPN and Password Manager included"
+        ],
+        "price": "$10.00/mo"
+      },
+      {
+        "name": "My Premium Tech Pro",
+        "features": [],
+        "price": "$10.00/mo"
+      },
+      {
+        "name": "Identity Protection",
+        "features": [
+          "Includes personal information monitoring (SSN, phone number, email, etc.)",
+          "Up to $1M in identity theft insurance"
+        ],
+        "price": "$10.00/mo"
+      },
+      {
+        "name": "Family Add-On for Identity Protection",
+        "features": [
+          "Add 1 additional user"
+        ],
+        "price": "$5.00/mo per additional user"
+      },
+      {
+        "name": "YouTube TV",
+        "features": [
+          "100+ live channels",
+          "Unlimited DVR storage",
+          "3 simultaneous streams"
+        ],
+        "price": "$79.99/mo"
+      }
+    ]
+  }
+  
