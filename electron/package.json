@@ -20,7 +20,10 @@
     "@electron-forge/plugin-auto-unpack-natives": "^7.5.0",
     "@electron-forge/plugin-fuses": "^7.5.0",
     "@electron/fuses": "^1.8.0",
-    "electron": "33.2.0"
+    "autoprefixer": "^10.4.20",
+    "electron": "33.2.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15"
   },
   "keywords": [],
   "author": {
@@ -29,6 +32,8 @@
   },
   "license": "MIT",
   "dependencies": {
-    "electron-squirrel-startup": "^1.0.1"
+    "electron-squirrel-startup": "^1.0.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
