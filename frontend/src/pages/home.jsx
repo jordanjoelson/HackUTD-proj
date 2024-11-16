@@ -1,10 +1,10 @@
 import React from 'react';
-import Hero from '../components/hero'; // Ensure this path is correct
+import Hero from '../components/hero'; // Import Hero component
 
 const Home = () => {
     return (
         <div className="home-container">
-            <Hero />
+            <Hero /> {/* Include the Hero section */}
         </div>
     );
 };

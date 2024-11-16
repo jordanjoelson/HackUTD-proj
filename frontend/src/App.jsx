@@ -1,11 +1,16 @@
 import React from "react";
-import Home from "./pages/home"; // Ensure this path is correct
+import { BrowserRouter } from "react-router-dom"; // Import BrowserRouter
+import Navbar from "./components/navbar"; // Importing the Navbar component
+import Home from "./pages/home"; // Importing Home component
 
 function App() {
   return (
-    <div className="App">
-      <Home />
-    </div>
+    <BrowserRouter> {/* Wrap everything in BrowserRouter */}
+      <div className="App">
+        <Navbar /> {/* Add Navbar here once */}
+        <Home />   {/* Display Home content */}
+      </div>
+    </BrowserRouter>
   );
 }
 
