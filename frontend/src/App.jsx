@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom"; // Import BrowserRouter
-import Navbar from "./components/navbar"; // Importing the Navbar component
-import Home from "./pages/home"; // Importing Home component
+import Navbar from "./components/navbar"; // Ensure correct casing
+import Home from "./pages/home"; // Ensure correct casing
 
 function App() {
   return (

@@ -1,32 +1,3 @@
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4; /* Light background color */
-}
-
-.home-container {
-  max-width: 800px;
-  margin: 0 auto; /* Center align */
-  padding: 20px;
-}
-
-.hero {
-  background-color: #282c34; /* Dark background for hero */
-  color: white;
-  padding: 40px;
-  text-align: center;
-}
-
-.hero-button {
-  background-color: #61dafb; /* Vite blue */
-  border: none;
-  color: black;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin-top: 20px;
-  cursor: pointer;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

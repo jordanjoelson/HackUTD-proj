@@ -1,51 +1,44 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 const Navbar = () => {
   return (
-    <div className="fixed top-0 left-0 right-0 z-50"> {/* Fixed position for the navbar */}
-      <header className="bg-white shadow-md"> {/* Background color and shadow for separation */}
+    <div className="fixed top-0 left-0 right-0 z-50 bg-[#FF0037] shadow-md"> {/* Updated background color */}
+      <header>
         <div className="max-w-[1248px] w-full mx-auto flex items-center justify-between px-4 py-2"> {/* Centered container with padding */}
-          {/* Logo Section */}
+          {/* Logo Section - Placeholder */}
           <div className="flex items-center">
             <Link to="/">
-              <img 
-                
-                className="h-16 w-auto block" // Set display to block for tight fit
-                style={{ margin: 0 }} // Ensure no margin
-              />
+              <div className="h-16 w-16 flex items-center justify-center rounded-full"> {/* Placeholder for logo */}
+                <span className="text-xl font-bold text-white">Logo</span> {/* Updated text color to white */}
+              </div>
             </Link>
           </div>
           {/* Navigation Section */}
-          <nav className="flex items-center space-x-6">
+          <nav className="flex items-center space-x-6"> {/* Flex container for horizontal layout */}
             <ul className="flex space-x-6">
               <li>
-                <Link to="/dashboard" className="text-gray-600 hover:text-gray-900">
-                  Dashboard
-                </Link>
+                <Link to="/dashboard" className="text-white font-bold hover:text-gray-200">Dashboard</Link> {/* Updated text color and made bold */}
               </li>
               <li>
-                <Link to="/faq" className="text-gray-600 hover:text-gray-900">
-                  FAQ
-                </Link>
+                <Link to="/faq" className="text-white font-bold hover:text-gray-200">FAQ</Link> {/* Updated text color and made bold */}
               </li>
             </ul>
-            <div className="flex space-x-4">
-              {/* Login Button with Animated Gradient Text */}
+            <div className="flex space-x-4 items-center"> {/* Added items-center for vertical alignment */}
+              
               <Link
                 to="/login"
-                className="relative inline-block px-4 py-2 border border-[#48BF84] rounded-[50px] transition duration-300"
+                className="text-white font-bold hover:text-gray-200 transition duration-300" // Styled like other links
               >
-                <span className="bg-gradient-to-r from-[#38ef7d] to-[#11998e] bg-clip-text text-transparent">
-                  Login
-                </span>
+                Login
               </Link>
 
-              {/* Get Started Button with Animated Gradient */}
+              {/* Get Started Button */}
               <Link
                 to="/getstarted"
-                className="animated-gradient text-white rounded-[50px] px-4 py-2 transition duration-300"
+                className="animated-gradient text-white font-bold rounded-full px-4 py-2 transition duration-300" // Made bold
               >
-                Get Started
+                Smart Search
               </Link>
             </div>
           </nav>
@@ -55,4 +48,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar; // Keep the export as Navbar
+export default Navbar; // Ensure this is exported correctly
