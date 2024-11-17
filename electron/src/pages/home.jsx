@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import streetImage from './/pic.jpg';
+import streetImage from './pic.jpg';
 import { Link } from "react-router-dom"; // Import Link for navigation
 
 const Home = () => {
@@ -52,10 +52,10 @@ const Home = () => {
 
       {/* Why Us Section */}
       <section id="why-us" className="min-h-[50vh] flex justify-center items-center mb-8">
-        <div className="border border-gray-300 rounded-[30px] p-24 shadow-lg max-w-[1248px] w-full text-center">
+        <div className="border border-gray-300 rounded-[30px] p-24 max-w-[1248px] w-full text-center">
           <h3 className="text-4xl font-bold mb-4 text-black">What is SmartCheck?</h3>
           <p className="text-xl text-black">
-              Welcome to SmartCheck, your ultimate personal assistant for all things connectivity with Frontier! With SmartCheck, you don’t just stay connected – you thrive! Our smart AI assistant, Bolt, is here to provide you with personalized recommendations tailored just for you, helping you discover the best plans and products to fit your unique needs. Whether you're looking for the perfect internet plan or want real-time feedback on your current setup, Bolt is ready to guide you every step of the way. Effortlessly track your subscriptions, receive actionable insights, and make informed decisions with ease. Get ready to take control of your connectivity like never before, with SmartCheck – the future of effortless communication is just a click away!
+            Welcome to SmartCheck, your ultimate personal assistant for all things connectivity with Frontier! With SmartCheck, you don’t just stay connected – you thrive! Our smart AI assistant, Bolt, is here to provide you with personalized recommendations tailored just for you, helping you discover the best plans and products to fit your unique needs. Whether you're looking for the perfect internet plan or want real-time feedback on your current setup, Bolt is ready to guide you every step of the way. Effortlessly track your subscriptions, receive actionable insights, and make informed decisions with ease. Get ready to take control of your connectivity like never before, with SmartCheck – the future of effortless communication is just a click away!
           </p>
         </div>
       </section>
@@ -64,9 +64,9 @@ const Home = () => {
       <section id="reviews" className="py-16 text-center">
         <h2 className="text-4xl font-bold mb-8 text-black">What Our Users Are Saying!</h2>
         <div className="max-w-[1248px] mx-auto px-4">
-          <div className="flex flex-wrap justify-center gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
             {reviews.map((review, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-lg w-full sm:w-80 hover:shadow-2xl transition-shadow duration-300">
+              <div key={index} className="bg-white p-6 rounded-lg border border-gray-200 transition-shadow duration-300">
                 <p className="text-xl mb-4 text-gray-800 font-sans">"{review.text}"</p>
                 <p className="font-semibold text-lg text-gray-600">{review.author}</p>
               </div>
@@ -74,9 +74,6 @@ const Home = () => {
           </div>
         </div>
       </section>
-
-
-
     </div>
   );
 };
