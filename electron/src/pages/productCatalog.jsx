@@ -12,7 +12,7 @@ const ProductCatalog = () => {
   };
 
   return (
-    <div>
+    <div className="bg-white text-black">
       <div className="title-box">
         <h1 className="text-3xl">Product Catalog</h1>
       </div>
