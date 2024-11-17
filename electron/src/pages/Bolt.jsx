@@ -11,23 +11,11 @@ const Bolt = () => {
     setMessages([...messages, newMessage]);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/metrics', {
-        rx_avg_bps: 1000,
-        tx_avg_bps: 500,
-        wireless_clients_count: 10,
-        wired_clients_count: 5,
-        rx_max_bps: 2000,
-        tx_max_bps: 1000,
-        network_speed: 10000,
-        rssi_max: -30,
-        rssi_min: -70,
-        rssi_mean: -50,
-        rssi_median: -55,
-        number_of_extenders: 2,
-        tx_p95_bps: 800,
+      const response = await axios.post('http://localhost:5000/api/chat', {
+        message: input
       });
 
-      const botMessage = { text: JSON.stringify(response.data, null, 2), sender: 'bot' };
+      const botMessage = { text: response.data.message, sender: 'bot' };
       setMessages([...messages, newMessage, botMessage]);
     } catch (error) {
       console.error('Error sending message:', error);
