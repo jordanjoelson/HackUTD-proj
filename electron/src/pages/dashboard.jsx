@@ -1,139 +1,157 @@
-// src/pages/Home.jsx
 import React, { useState } from "react";
-import { Link } from "react-router-dom"; // Import Link for navigation
 
-const Home = () => {
-  const [activeFAQ, setActiveFAQ] = useState(null);
-
-  const faqs = [
-    {
-      question: "What services do you offer?",
-      answer: "We offer a wide range of services including web development, mobile app development, and digital marketing solutions tailored to meet your specific needs."
-    },
-    {
-      question: "How long does a typical project take?",
-      answer: "Project timelines vary depending on the scope and complexity. We work closely with our clients to establish realistic timelines and deliver high-quality results within the agreed-upon timeframe."
-    },
-    {
-      question: "Do you offer support after project completion?",
-      answer: "Yes, we provide ongoing support and maintenance services to ensure your project continues to perform optimally long after the initial launch."
-    }
-  ];
-
-  const toggleFAQ = (index) => {
-    setActiveFAQ(activeFAQ === index ? null : index);
-  };
-
-  // Chatbot messages state
-  const messages = [
-    { text: "Hello! How can I assist you today?", sender: "bot" },
-    { text: "What services do you offer?", sender: "user" },
-    { text: "We offer web development, mobile app development, and digital marketing.", sender: "bot" },
-    { text: "How long does a typical project take?", sender: "user" },
-    { text: "Project timelines vary based on complexity.", sender: "bot" },
-    { text: "Do you provide support after project completion?", sender: "user" },
-    { text: "Yes, we offer ongoing support and maintenance.", sender: "bot" }
-  ];
-
+const GraphPlaceholder = () => {
   return (
-    <div>
-      <section id="home" className="hero min-h-screen bg-white text-black flex justify-center items-center">
-        <div className="max-w-[1248px] w-full px-4">
-          <div className="text-center">
-            <h1 className="text-6xl font-bold mb-4">Welcome to Our Website</h1>
-            <p className="text-2xl mb-6">Your journey to excellence starts here.</p>
-            <Link to="/login">
-              <button className="px-8 py-4 bg-[#FF0037] text-white rounded-[60px] hover:bg-red-600 transition duration-300 text-[18px] font-bold uppercase">
-                Get Started
-              </button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Us Section */}
-      <section id="why-us" className="min-h-[5vh] flex justify-center items-center bg-white text-black">
-        <div className="bg-gray-100 border border-gray-300 rounded-[30px] p-24 shadow-lg max-w-[1248px] w-full text-center">
-          <h3 className="text-4xl font-bold mb-4">Why Us?</h3>
-          <p className="text-xl">
-            Whether you are a startup looking for innovative solutions or an established business aiming for growth, we have the expertise to help you succeed.
-          </p>
-        </div>
-      </section>
-
-      {/* Chatbot Section */}
-      <section id="chatbot" className="chatbot min-h-screen bg-white text-black flex flex-col items-center justify-center py-6">
-        <div className="max-w-[600px] w-full px-4 py-6 border border-gray-300 rounded-lg shadow-lg mb-8">
-          <h2 className="text-4xl font-bold mb-4 text-center">Meet Our Chatbot</h2>
-          <div className="flex flex-col space-y-4 mb-4 h-72 overflow-y-auto p-4 border border-gray-200 rounded-lg">
-            {messages.map((msg, index) => (
-              <div key={index} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-xs p-2 rounded-lg ${msg.sender === 'user' ? 'bg-blue-500 text-white' : 'bg-gray-200 text-black'}`}>
-                  {msg.text}
-                </div>
-              </div>
-            ))}
-          </div>
-          {/* Input field and send button (disabled functionality) */}
-          <div className="flex mt-4">
-            <input 
-              type="text" 
-              placeholder="Type your message..." 
-              disabled 
-              className="border border-gray-300 rounded-l-lg p-2 w-full"
-            />
-            <button 
-              disabled 
-              className="bg-[#FF0037] text-white rounded-r-lg px-4"
-            >
-              Send
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section id="faq" className="faq min-h-screen bg-white text-black flex justify-center items-center">
-        <div className="max-w-[1248px] w-full px-1">
-          <h2 className="text-3xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <div key={index} className="bg-gray-100 rounded-lg shadow-md">
-                <div 
-                  className="flex justify-between items-center p-6 cursor-pointer"
-                  onClick={() => toggleFAQ(index)}
-                >
-                  <h3 className="text-xl font-semibold">{faq.question}</h3>
-                  <svg 
-                    className={`w-6 h-6 transform transition-transform duration-300 ${
-                      activeFAQ === index ? 'rotate-180' : ''
-                    }`}
-                    fill="none" 
-                    stroke="currentColor" 
-                    viewBox="0 0 24 24" 
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M19 9l-7 7-7-7" 
-                    />
-                  </svg>
-                </div>
-                {activeFAQ === index && (
-                  <div className="p-6 pt-0 text-gray-700">
-                    <p>{faq.answer}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+    <div className="bg-gray-200 rounded-lg shadow-md p-4 flex items-center justify-center">
+      <p className="text-gray-500">Graph Placeholder</p>
     </div>
   );
 };
 
-export default Home;
+const ProductComparisonTool = () => {
+  const [selectedPlans, setSelectedPlans] = useState([]);
+
+  const plans = [
+    { id: 1, name: "Fiber 1 Gig", price: "$70/month", features: ["High speed", "Unlimited data", "Free installation"] },
+    { id: 2, name: "Fiber 2 Gig", price: "$90/month", features: ["Higher speed", "Unlimited data", "Free installation", "Priority support"] },
+    { id: 3, name: "Basic DSL", price: "$50/month", features: ["Moderate speed", "Limited data", "Standard support"] }
+  ];
+
+  const togglePlanSelection = (planId) => {
+    setSelectedPlans((prev) =>
+      prev.includes(planId) ? prev.filter(id => id !== planId) : [...prev, planId]
+    );
+  };
+
+  return (
+    <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+      <h3 className="text-xl font-bold mb-4">Product Comparison Tool</h3>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {plans.map(plan => (
+          <div key={plan.id} className={`border rounded-lg p-4 ${selectedPlans.includes(plan.id) ? 'bg-blue-100' : 'bg-white'}`}>
+            <h4 className="font-semibold text-lg">{plan.name}</h4>
+            <p className="text-md">{plan.price}</p>
+            <ul className="list-disc list-inside">
+              {plan.features.map((feature, index) => (
+                <li key={index}>{feature}</li>
+              ))}
+            </ul>
+            <button 
+              onClick={() => togglePlanSelection(plan.id)} 
+              className={`mt-2 px-4 py-2 rounded ${selectedPlans.includes(plan.id) ? 'bg-red-500' : 'bg-green-500'} text-white`}
+            >
+              {selectedPlans.includes(plan.id) ? 'Deselect' : 'Select'}
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {selectedPlans.length > 0 && (
+        <div className="mt-6">
+          <h4 className="font-bold text-lg">Selected Plans:</h4>
+          <ul className="list-disc list-inside">
+            {plans.filter(plan => selectedPlans.includes(plan.id)).map(plan => (
+              <li key={plan.id}>{plan.name} - {plan.price}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+};
+
+const SmartSearchAndFilter = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredPlans, setFilteredPlans] = useState([]);
+
+  const plans = [
+    { id: 1, name: "Fiber 1 Gig", price: "$70/month" },
+    { id: 2, name: "Fiber 2 Gig", price: "$90/month" },
+    { id: 3, name: "Basic DSL", price: "$50/month" },
+    // Add more plans as needed
+  ];
+
+  const handleSearch = (event) => {
+    const term = event.target.value.toLowerCase();
+    setSearchTerm(term);
+    
+    // Filter plans based on search term
+    const results = plans.filter(plan =>
+      plan.name.toLowerCase().includes(term)
+    );
+    
+    setFilteredPlans(results);
+  };
+
+  return (
+    <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+      <h3 className="text-xl font-bold mb-4">Smart Search and Filter</h3>
+      <input 
+        type="text" 
+        placeholder="Search for plans..." 
+        value={searchTerm}
+        onChange={handleSearch}
+        className="border border-gray-300 rounded-lg p-2 mb-4 w-full"
+      />
+      
+      <h4 className="font-semibold mb-2">Filtered Plans:</h4>
+      <ul className="list-disc list-inside">
+        {(filteredPlans.length > 0 ? filteredPlans : plans).map(plan => (
+          <li key={plan.id} className="mb-1">{plan.name} - {plan.price}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+const Dashboard = () => {
+  return (
+    <section className="min-h-screen bg-white text-black flex flex-col items-center p-6 relative">
+      {/* Background Blur Effect */}
+      <div className="absolute inset-0 bg-[#FF0037]/10 rounded-full blur-[120px] z-0" />
+      
+      <div className="max-w-[1248px] w-full z-10 relative">
+        {/* Updated Header */}
+        <h2 className="text-sm font-semibold mb-1">
+          pages <span className="font-bold">/ Dashboard</span>
+        </h2>
+        <h3 className="text-lg font-bold mb-6">Dashboard</h3>
+
+        {/* Subscription Overview */}
+        <h3 className="text-2xl font-semibold mb-4">Subscription Overview</h3>
+        <div className="bg-white rounded-lg shadow-md p-4 mb-8">
+          <p>Active Plans: Basic Plan</p>
+          <p>Cost: $10/month</p>
+        </div>
+
+        {/* Usage Metrics */}
+        <h3 className="text-2xl font-semibold mb-4">Usage Metrics</h3>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+          <div className="bg-white rounded-lg shadow-md p-4">
+            <h4 className="font-bold text-xl mb-2">Internet Speed</h4>
+            <GraphPlaceholder />
+          </div>
+          <div className="bg-white rounded-lg shadow-md p-4">
+            <h4 className="font-bold text-xl mb-2">Data Usage</h4>
+            <GraphPlaceholder />
+          </div>
+        </div>
+
+        {/* Recommendations History */}
+        <h3 className="text-2xl font-semibold mb-4">Recommendations History</h3>
+        <div className="bg-white rounded-lg shadow-md p-4 mb-8">
+          <GraphPlaceholder />
+          <p className="mt-4 text-gray-500">Previously recommended products will be displayed here.</p>
+        </div>
+
+        {/* Smart Search and Filter Section */}
+        <SmartSearchAndFilter />
+
+        {/* Product Comparison Tool Section */}
+        <ProductComparisonTool />
+      </div>
+    </section>
+  );
+};
+
+export default Dashboard;
