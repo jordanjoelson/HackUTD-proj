@@ -1,73 +1,75 @@
 import os
 import google.generativeai as genai
 from dotenv import load_dotenv
+from flask import Flask, request, jsonify
 import pandas as pd
 import numpy as np
-import streamlit as st
-
-def avg_throughput_per_device (rx_avg_bps, tx_avg_bps, wireless_clients_count, wired_clients_count):
-    return ((rx_avg_bps + tx_avg_bps) / (wireless_clients_count + wired_clients_count))
-def network_utilization_peak(rx_max_bps, tx_max_bps, network_speed):
-    return (rx_max_bps + tx_max_bps) / network_speed
-def signal_strength_range(rssi_max, rssi_min):
-    return rssi_max-rssi_min
-def signal_strength_reliability(rssi_mean, rssi_min):
-    return rssi_mean/rssi_min
-def rssi_degradation(rssi_mean, rssi_median):
-    return rssi_mean-rssi_median
-def client_density(wireless_clients_count, wired_clients_count, number_of_extenders):
-    return (wireless_clients_count + wired_clients_count) / number_of_extenders
-def client_load_per_extender (rx_avg_bps, tx_avg_bps, number_of_extenders):
-    return (rx_avg_bps + tx_avg_bps) / number_of_extenders
-def streaming_suitability (rx_avg_bps, tx_avg_bps, required_bps_for_streaming = 5):
-    return (rx_avg_bps + tx_avg_bps) / required_bps_for_streaming
-def network_stability (tx_p95_bps, tx_avg_bps):
-    return tx_p95_bps / tx_avg_bps
-def client_experience (tx_avg_bps, rx_avg_bps):
-    return abs(tx_avg_bps - rx_avg_bps)
 
 # Load environment variables
 load_dotenv()
 
-history = []
-
-feature_string = ""
-
-feature_columns = [
-    'whole_home_wifi', 
-    'wifi_security', 
-    'wifi_security_plus', 
-    'premium_tech_pro', 
-    'identity_protection', 
-    'family_identity_protection', 
-    'total_shield', 
-    'youtube_tv'
-    ]
+app = Flask(__name__)
 
 # Configure Google API
-genai.configure(api_key='AIzaSyAS5p5QMLl-k5jCTKwUZLMBPi6d7uaaq_o')
+genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
-# Helper function for data preprocessing
+# Define your existing functions here
+def avg_throughput_per_device(rx_avg_bps, tx_avg_bps, wireless_clients_count, wired_clients_count):
+    return (rx_avg_bps + tx_avg_bps) / (wireless_clients_count + wired_clients_count)
+
+def network_utilization_peak(rx_max_bps, tx_max_bps, network_speed):
+    return (rx_max_bps + tx_max_bps) / network_speed
+
+def signal_strength_range(rssi_max, rssi_min):
+    return rssi_max - rssi_min
+
+def signal_strength_reliability(rssi_mean, rssi_min):
+    return rssi_mean / rssi_min
+
+def rssi_degradation(rssi_mean, rssi_median):
+    return rssi_mean - rssi_median
+
+def client_density(wireless_clients_count, wired_clients_count, number_of_extenders):
+    return (wireless_clients_count + wired_clients_count) / number_of_extenders
+
+def client_load_per_extender(rx_avg_bps, tx_avg_bps, number_of_extenders):
+    return (rx_avg_bps + tx_avg_bps) / number_of_extenders
+
+def streaming_suitability(rx_avg_bps, tx_avg_bps, required_bps_for_streaming=5):
+    return (rx_avg_bps + tx_avg_bps) / required_bps_for_streaming
+
+def network_stability(tx_p95_bps, tx_avg_bps):
+    return tx_p95_bps / tx_avg_bps
+
+def client_experience(tx_avg_bps, rx_avg_bps):
+    return abs(tx_avg_bps - rx_avg_bps)
+
+# Load and preprocess data
 def load_and_preprocess_data():
-    # Load the dataset
     new_customer_df = pd.read_csv('current_customers.csv')
-    
-    # Preprocess the data
     new_customer_df['network_speed'] = new_customer_df['network_speed'].str.replace(r'[^\d.]+', '', regex=True).astype(float)
     new_customer_df['city'] = new_customer_df['city'].astype('category').cat.codes
     new_customer_df['state'] = new_customer_df['state'].astype('category').cat.codes
     new_customer_df.set_index("acct_id", inplace=True)
-
     new_customer_df = new_customer_df.fillna(0)
     new_customer_df.replace(True, 1, inplace=True)
-    
     return new_customer_df
 
-# Helper function to get recommendations based on network parameters
+# Get recommendations based on network parameters
 def get_recommendations(random_row):
     recommendations = []
-
     columns = []
+
+    feature_columns = [
+        'whole_home_wifi', 
+        'wifi_security', 
+        'wifi_security_plus', 
+        'premium_tech_pro', 
+        'identity_protection', 
+        'family_identity_protection', 
+        'total_shield', 
+        'youtube_tv'
+    ]
 
     for feature in feature_columns:
         if random_row[feature] == 1:
@@ -89,8 +91,8 @@ def get_recommendations(random_row):
         recommendations.append(feature_list_string)
     
     avg_throughput = avg_throughput_per_device(
-    random_row['rx_avg_bps'], random_row['tx_avg_bps'], 
-    random_row['wireless_clients_count'], random_row['wired_clients_count'])
+        random_row['rx_avg_bps'], random_row['tx_avg_bps'], 
+        random_row['wireless_clients_count'], random_row['wired_clients_count'])
 
     network_utilization = network_utilization_peak(
         random_row['rx_max_bps'], random_row['tx_max_bps'], random_row['network_speed'])
@@ -137,7 +139,7 @@ def get_recommendations(random_row):
     
     return recommendations
 
-# Function to update knowledge base from the selected row
+# Update knowledge base from the selected row
 def update_knowledge_base(random_row):
     knowledge_base = {
         'extenders': random_row['extenders'],
@@ -157,35 +159,13 @@ def update_knowledge_base(random_row):
     }
     return knowledge_base
 
-# Streamlit UI elements
-print("Bolt: Frontier's Internet Assistant")
-print("Hello! I'm Bolt, your friendly assistant from Frontier.\n"
-        "I'm here to help you find the best options for your internet needs. Whether you're looking for speed upgrades, the perfect plan, or ways to improve your Wi-Fi, I've got you covered.\n"
-        "I also have a list of personalized recommendations based on your preferences, and I can provide more details about each one whenever you're ready!\n"
-        "Just ask, and I'll provide all the information you need. \n")
-
 # Load the dataset and preprocess it
 new_customer_df = load_and_preprocess_data()
 
 # Randomly select a row for demonstration
 random_row = new_customer_df.sample(n=1)
 
-# Display recommendations when the button is clicked
-recommendations = get_recommendations(random_row.iloc[0])  # Get recommendations for the randomly selected row
-history.append({"role": "user", "parts": recommendations})
-if recommendations:
-    print("Here are some recommendations based on your data:\n")
-    for rec in recommendations:
-        print(f"- {rec}")
-else:
-    print("No specific recommendations at this moment.")
-
-if feature_string == "":
-    x = True
-else:
-    feature_string += "so don't give recommendations on these UNLESS it is still an ugrade."
-    history.append({"role": "user", "parts": feature_string})
-
+# Update knowledge base
 knowledge_base = update_knowledge_base(random_row.iloc[0])
 
 # System instruction with knowledge base information
@@ -240,25 +220,20 @@ model = genai.GenerativeModel(
     system_instruction=system_instruction
 )
 
+history = [{"role": "system", "content": system_instruction}]
 
-history.append({"role": "user", "parts": system_instruction})
-
-print()
-
-# Input from user for the chatbot
-user_input = input("Ask Bolt for assistance:")
-
-while user_input:
-
-    if user_input:
-        # Initialize the model and start chat session
+@app.route('/api/chat', methods=['POST'])
+def chat():
+    user_message = request.json.get('message')
+    try:
         chat_session = model.start_chat(history=history)
-        response = chat_session.send_message(user_input)
-        model_response = response.text
-        history.append({"role": "user", "parts": [user_input]})
-    
-        # Display chatbot response
-        print(f"Netnavigator: {model_response}")
-        history.append({"role": "model", "parts": [model_response]})
+        response = chat_session.send_message(user_message)
+        ai_message = response.text.strip()
+        history.append({"role": "user", "content": user_message})
+        history.append({"role": "model", "content": ai_message})
+        return jsonify({"message": ai_message})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
-    user_input = input("Additional Questions:")
+if __name__ == '__main__':
+    app.run(port=5000)
