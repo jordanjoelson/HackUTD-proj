@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from 'react-router-dom'; // Import Link for navigation
 
 const Navbar = () => {
   return (
@@ -6,9 +7,9 @@ const Navbar = () => {
       <div className="max-w-[1248px] w-full mx-auto px-4 flex justify-between items-center">
         <h1 className="text-2xl font-bold">SmartCheck</h1>
         <ul className="flex space-x-6">
-          <li><a href="#about" className="hover:underline">About Us</a></li>
-          <li><a href="#faq" className="hover:underline">Dashboard</a></li>
-          <li><a href="#contact" className="hover:underline">faq</a></li>
+          <li>
+            <Link to="/dashboard" className="hover:underline">Dashboard</Link>
+          </li>
         </ul>
       </div>
     </nav>
@@ -39,7 +40,7 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar /> {/* Include Navbar here */}
       
       <section id="home" className="hero min-h-screen bg-white text-black flex justify-center items-center">
         <div className="max-w-[1248px] w-full px-4">
