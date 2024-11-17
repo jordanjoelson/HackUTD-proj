@@ -24,7 +24,7 @@ const Home = () => {
   ];
 
   return (
-    <div className="flex flex-col h-screen bg-[radial-gradient(circle_at_18.7%_37.8%,rgb(250,250,250)_0%,rgb(225,234,238)_90%)] ml-64"> {/* Unified background for entire homepage */}
+    <div className="flex flex-col min-h-screen bg-[radial-gradient(circle_at_18.7%_37.8%,rgb(250,250,250)_0%,rgb(225,234,238)_90%)]">
       <section id="home" className="hero flex-grow flex justify-center items-center text-black mb-8 mt-16 relative"> {/* Removed bg-white */}
         <div className="max-w-[1248px] w-full px-4 py-30">
           <div className="text-center relative">
