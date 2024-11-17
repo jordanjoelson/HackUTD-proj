@@ -1,14 +1,13 @@
-// src/components/navbar.jsx
-import React from "react"; // Ensure this line is uncommented
-import { Link } from "react-router-dom"; // Use Link for navigation
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from '../assets/SmartCheck.png'; // Import the logo
 
 const Navbar = () => {
   return (
     <nav className="bg-[#FF0037] text-white py-4">
       <div className="max-w-[1248px] w-full mx-auto px-4 flex justify-between items-center">
-        {/* Wrap the h1 in a Link to navigate to the homepage */}
         <Link to="/" className="flex items-center">
-          <h1 className="text-2xl font-bold">SmartCheck</h1>
+          <img src={logo} alt="SmartCheck Logo" className="h-8 mr-2" /> {/* Use the logo */}
         </Link>
         <ul className="flex space-x-6">
           <li>
