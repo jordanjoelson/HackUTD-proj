@@ -1,8 +1,9 @@
 # HackUTD-Proj-SmartCheck
 
 ## Description:
-### SmartCheck is a platform that provides Frontier users a hub for their current plans.  
-The platform provides AI-generated recommendations and even gives user data that can be referenced at all times.
+SmartCheck is a platform that provides Frontier users with a centralized hub to manage and review their current plans.  
+The platform goes beyond simple data display by offering AI-generated recommendations tailored to user needs.  
+It also allows users to access and reference their data anytime, ensuring convenience and informed decision-making.
 
 ## Full Stack:
 ### - React (frontend)  
