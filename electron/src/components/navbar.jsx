@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import logo from '../assets/SmartCheck.png'; // Import the logo
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 const Navbar = () => {
   return (
@@ -11,10 +13,14 @@ const Navbar = () => {
         </Link>
         <ul className="flex space-x-6">
           <li>
-            <Link to="/dashboard" className="hover:underline">Dashboard</Link>
+            <Link to="/dashboard" className="hover:underline flex items-center">
+              <DashboardIcon className="mr-1" />
+            </Link>
           </li>
           <li>
-            <Link to="/login" className="hover:underline">Login</Link>
+            <Link to="/signup" className="hover:underline flex items-center">
+              <PersonAddIcon className="mr-1" />
+            </Link>
           </li>
         </ul>
       </div>
