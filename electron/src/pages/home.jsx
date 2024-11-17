@@ -6,10 +6,9 @@ const Navbar = () => {
       <div className="max-w-[1248px] w-full mx-auto px-4 flex justify-between items-center">
         <h1 className="text-2xl font-bold">SmartCheck</h1>
         <ul className="flex space-x-6">
-          <li><a href="#home" className="hover:underline">Home</a></li>
           <li><a href="#about" className="hover:underline">About Us</a></li>
-          <li><a href="#faq" className="hover:underline">FAQs</a></li>
-          <li><a href="#contact" className="hover:underline">Contact</a></li>
+          <li><a href="#faq" className="hover:underline">Dashboard</a></li>
+          <li><a href="#contact" className="hover:underline">faq</a></li>
         </ul>
       </div>
     </nav>
