@@ -1,20 +1,5 @@
+// src/pages/home.jsx
 import React, { useState } from "react";
-import { Link } from 'react-router-dom'; // Import Link for navigation
-
-const Navbar = () => {
-  return (
-    <nav className="bg-[#FF0037] text-white py-4">
-      <div className="max-w-[1248px] w-full mx-auto px-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold">SmartCheck</h1>
-        <ul className="flex space-x-6">
-          <li>
-            <Link to="/dashboard" className="hover:underline">Dashboard</Link>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  );
-};
 
 const Home = () => {
   const [activeFAQ, setActiveFAQ] = useState(null);
@@ -40,8 +25,6 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar /> {/* Include Navbar here */}
-      
       <section id="home" className="hero min-h-screen bg-white text-black flex justify-center items-center">
         <div className="max-w-[1248px] w-full px-4">
           <div className="text-center">
@@ -54,6 +37,7 @@ const Home = () => {
         </div>
       </section>
 
+      {/* Other sections remain unchanged */}
       <section id="about" className="about-us min-h-screen bg-white text-black flex justify-center items-center">
         <div className="max-w-[1248px] w-full px-4">
           <div className="text-center">
