@@ -17,7 +17,6 @@ const Navbar = () => {
         <img src={logo} alt="SmartCheck Logo" className="h-12" />
       </Link>
 
-
       {/* Navigation Links */}
       <ul className="space-y-6 w-full px-4 flex flex-col items-start">
 
@@ -27,7 +26,7 @@ const Navbar = () => {
           className="hover:bg-red-600 flex items-center py-2 px-4 rounded-md transition w-full"
         >
           <AccountCircleIcon className="mr-2" /> {/* Profile Icon */}
-            Profile
+          Profile
         </Link>
 
         {/* Dashboard Link */}
@@ -44,7 +43,7 @@ const Navbar = () => {
         {/* AI Assistant Link with AI Icon */}
         <li>
           <Link
-            to="/ai-assistant" // Update to your AI Assistant route
+            to="/bolt" // Update to your AI Assistant route
             className="hover:bg-red-600 flex items-center py-2 px-4 rounded-md transition w-full"
           >
             <AssistantIcon className="mr-2 h-6 w-6" /> {/* AI Assistant Icon */}
@@ -55,7 +54,7 @@ const Navbar = () => {
         {/* Product Pricing Link with Dollar Icon */}
         <li>
           <Link
-            to="#product-pricing" // Replace with your Product Pricing route if available
+            to="/product-catalog" // Replace with your Product Pricing route if available
             className="hover:bg-red-600 flex items-center py-2 px-4 rounded-md transition w-full"
           >
             <AttachMoneyIcon className="mr-2 h-6 w-6" /> {/* Dollar sign icon */}
@@ -75,14 +74,14 @@ const Navbar = () => {
         </li>
       </ul>
 
-      {/* Log Out Button */}
+      {/* Log In Button */}
       <div className="mt-auto w-full">
         <Link
-          to="/logout" // Replace with your logout route or logic
+          to="/login" // Replace with your login route or logic
           className="hover:bg-red-600 flex items-center py-3 px-6 rounded-md transition text-xl bg-red-600 w-full"
         >
           <PersonAddIcon className="mr-2" />
-          Log Out
+          Log In
         </Link>
       </div>
     </nav>
