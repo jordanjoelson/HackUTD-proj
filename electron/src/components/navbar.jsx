@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import logo from '../assets/SmartCheck.png'; // Import the logo
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
+import ChatIcon from '@mui/icons-material/Chat';
 
 const Navbar = () => {
   return (
@@ -20,6 +21,11 @@ const Navbar = () => {
           <li>
             <Link to="/signup" className="hover:underline flex items-center">
               <PersonAddIcon className="mr-1" />
+            </Link>
+          </li>
+          <li>
+            <Link to="/bolt" className="hover:underline flex items-center">
+              <ChatIcon className="mr-1" />
             </Link>
           </li>
         </ul>
