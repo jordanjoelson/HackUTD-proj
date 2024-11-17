@@ -17,20 +17,19 @@ const Navbar = () => {
         <img src={logo} alt="SmartCheck Logo" className="h-12" />
       </Link>
 
-      {/* Profile Button */}
-      <Link
-        to="/profile" // Update to the correct profile route
-        className="hover:bg-red-600 flex items-center py-2 px-4 rounded-md transition w-full mb-6"
-      >
-        <AccountCircleIcon className="mr-2 h-6 w-6" /> {/* Profile Icon */}
-        <div className="text-white">
-          <p className="font-semibold text-lg">John Doe</p> {/* Replace with dynamic user name */}
-          <p className="text-sm">Admin</p> {/* Replace with dynamic role if needed */}
-        </div>
-      </Link>
 
       {/* Navigation Links */}
       <ul className="space-y-6 w-full px-4 flex flex-col items-start">
+
+        {/* Profile Button */}
+        <Link
+          to="/profile" // Update to the correct profile route
+          className="hover:bg-red-600 flex items-center py-2 px-4 rounded-md transition w-full"
+        >
+          <AccountCircleIcon className="mr-2" /> {/* Profile Icon */}
+            Profile
+        </Link>
+
         {/* Dashboard Link */}
         <li>
           <Link
