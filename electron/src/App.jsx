@@ -5,6 +5,8 @@ import Home from "./pages/home.jsx";
 import Dashboard from "./pages/dashboard.jsx";
 import Navbar from './components/navbar.jsx'; // Ensure 'Navbar' is capitalized
 import Bolt from './pages/Bolt.jsx'; // Import Bolt.jsx
+import ProductCatalog from './pages/productCatalog.jsx'; // Import Bolt.jsx
+
 
 export default function App() {
   return (
@@ -15,6 +17,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/bolt" element={<Bolt />} /> {/* Add Bolt route */}
+          <Route path="/product-catalog" element={<ProductCatalog />} /> 
+
         </Routes>
       </div>
     </Router>

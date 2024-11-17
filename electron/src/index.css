@@ -26,3 +26,40 @@
     scrollbar-width: thin; /* Make scrollbar thin */
     scrollbar-color: #d3d3d3 #f0f0f0; /* Thumb color and track color */
 }
+
+/* Styles for Product Catalog */
+.title-box {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.section {
+    margin: 20px;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.package, .addon {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.package-icon, .addon-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
+.description {
+    display: none;
+    margin-top: 10px;
+}
+
+.description.visible {
+    display: block;
+}
