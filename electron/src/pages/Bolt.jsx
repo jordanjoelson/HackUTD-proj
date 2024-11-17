@@ -31,7 +31,7 @@ const Bolt = () => {
   };
 
   return (
-    <section id="chatbot" className="chatbot flex-grow bg-white text-black flex flex-col" style={{ height: 'calc(100vh - 64px)' }}>
+    <section id="chatbot" className="chatbot flex-grow bg-white text-black flex flex-col" style={{ height: 'calc(100vh - 96px)' }}> {/* Adjust height to be one and a half times the length of the navbar shorter */}
       <div className="w-full h-full flex flex-col justify-between px-4 py-6">
         <h2 className="text-4xl font-bold mb-4 text-center">Bolt Chat Bot</h2>
         <div className="flex flex-col space-y-4 mb-4 flex-grow overflow-y-auto p-4 border border-gray-400 rounded-lg">

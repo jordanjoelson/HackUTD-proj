@@ -107,8 +107,6 @@ const SmartSearchAndFilter = () => {
 const Dashboard = () => {
   return (
     <section className="min-h-screen bg-white text-black flex flex-col items-center p-6 relative">
-      {/* Background Blur Effect */}
-      <div className="absolute inset-0 bg-[#FF0037]/10 rounded-full blur-[120px] z-0" />
       
       <div className="max-w-[1248px] w-full z-10 relative">
         {/* Updated Header */}

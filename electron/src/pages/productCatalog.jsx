@@ -13,7 +13,7 @@ const ProductCatalog = () => {
 
   return (
     <div className="bg-white text-black">
-      <div className="title-box">
+      <div className="title-box pt-4"> {/* Add padding-top to ensure no margin */}
         <h1 className="text-3xl">Product Catalog</h1>
       </div>
 
