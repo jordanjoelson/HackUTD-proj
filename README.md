@@ -17,3 +17,11 @@ It also allows users to access and reference their data anytime, ensuring conven
 ### - Python  
 ### - HTML  
 ### - JavaScript  
+
+## Full Stack:
+### - Aastha Sharma 
+### - Jordan Joelson
+### - Rohit Penna
+### - Dhruv Yadav
+
+
