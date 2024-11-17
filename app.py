@@ -5,8 +5,44 @@ import pandas as pd
 import numpy as np
 import streamlit as st
 
+def avg_throughput_per_device (rx_avg_bps, tx_avg_bps, wireless_clients_count, wired_clients_count):
+    return ((rx_avg_bps + tx_avg_bps) / (wireless_clients_count + wired_clients_count))
+def network_utilization_peak(rx_max_bps, tx_max_bps, network_speed):
+    return (rx_max_bps + tx_max_bps) / network_speed
+def signal_strength_range(rssi_max, rssi_min):
+    return rssi_max-rssi_min
+def signal_strength_reliability(rssi_mean, rssi_min):
+    return rssi_mean/rssi_min
+def rssi_degradation(rssi_mean, rssi_median):
+    return rssi_mean-rssi_median
+def client_density(wireless_clients_count, wired_clients_count, number_of_extenders):
+    return (wireless_clients_count + wired_clients_count) / number_of_extenders
+def client_load_per_extender (rx_avg_bps, tx_avg_bps, number_of_extenders):
+    return (rx_avg_bps + tx_avg_bps) / number_of_extenders
+def streaming_suitability (rx_avg_bps, tx_avg_bps, required_bps_for_streaming = 5):
+    return (rx_avg_bps + tx_avg_bps) / required_bps_for_streaming
+def network_stability (tx_p95_bps, tx_avg_bps):
+    return tx_p95_bps / tx_avg_bps
+def client_experience (tx_avg_bps, rx_avg_bps):
+    return abs(tx_avg_bps - rx_avg_bps)
+
 # Load environment variables
 load_dotenv()
+
+history = []
+
+feature_string = ""
+
+feature_columns = [
+    'whole_home_wifi', 
+    'wifi_security', 
+    'wifi_security_plus', 
+    'premium_tech_pro', 
+    'identity_protection', 
+    'family_identity_protection', 
+    'total_shield', 
+    'youtube_tv'
+    ]
 
 # Configure Google API
 genai.configure(api_key='AIzaSyAS5p5QMLl-k5jCTKwUZLMBPi6d7uaaq_o')
@@ -14,31 +50,68 @@ genai.configure(api_key='AIzaSyAS5p5QMLl-k5jCTKwUZLMBPi6d7uaaq_o')
 # Helper function for data preprocessing
 def load_and_preprocess_data():
     # Load the dataset
-    new_customer_df = pd.read_csv('example_networks.csv')
+    new_customer_df = pd.read_csv('current_customers.csv')
     
     # Preprocess the data
     new_customer_df['network_speed'] = new_customer_df['network_speed'].str.replace(r'[^\d.]+', '', regex=True).astype(float)
     new_customer_df['city'] = new_customer_df['city'].astype('category').cat.codes
     new_customer_df['state'] = new_customer_df['state'].astype('category').cat.codes
     new_customer_df.set_index("acct_id", inplace=True)
+
+    new_customer_df = new_customer_df.fillna(0)
+    new_customer_df.replace(True, 1, inplace=True)
     
     return new_customer_df
 
 # Helper function to get recommendations based on network parameters
 def get_recommendations(random_row):
     recommendations = []
+
+    columns = []
+
+    for feature in feature_columns:
+        if random_row[feature] == 1:
+            columns.append(feature)
+
+    feature_list_string = ""
+    x = True
+    for feature in columns:
+        if x:
+            feature_list_string = "You currently have the following active features:\n"
+            x = False
+        feature_list_string += f"   - --{feature} --\n"
+
+    feature_string = feature_list_string
+
+    if feature_string == "":
+        x = True
+    else:
+        recommendations.append(feature_list_string)
     
-    # Dummy calculations for the various network metrics (replace with your actual functions)
-    avg_throughput = random_row['rx_avg_bps'] + random_row['tx_avg_bps']  # Replace with actual calculation
-    network_utilization = random_row['rx_max_bps'] / random_row['network_speed']  # Replace with actual calculation
-    signal_range = random_row['rssi_max'] - random_row['rssi_min']  # Replace with actual calculation
-    signal_reliability = random_row['rssi_mean'] / random_row['rssi_max']  # Replace with actual calculation
-    rssi_deg = random_row['rssi_mean'] - random_row['rssi_median']  # Replace with actual calculation
-    client_density_value = (random_row['wireless_clients_count'] + random_row['wired_clients_count']) / random_row['extenders']  # Replace with actual calculation
-    client_load = random_row['rx_avg_bps'] + random_row['tx_avg_bps']  # Replace with actual calculation
-    streaming_suitability_value = random_row['rx_avg_bps'] / random_row['tx_avg_bps']  # Replace with actual calculation
-    network_stability_value = random_row['tx_max_bps'] / random_row['rx_max_bps']  # Replace with actual calculation
-    client_experience_value = random_row['tx_avg_bps'] - random_row['rx_avg_bps']  # Replace with actual calculation
+    avg_throughput = avg_throughput_per_device(
+    random_row['rx_avg_bps'], random_row['tx_avg_bps'], 
+    random_row['wireless_clients_count'], random_row['wired_clients_count'])
+
+    network_utilization = network_utilization_peak(
+        random_row['rx_max_bps'], random_row['tx_max_bps'], random_row['network_speed'])
+    
+    signal_range = signal_strength_range(random_row['rssi_max'], random_row['rssi_min'])
+    
+    signal_reliability = signal_strength_reliability(random_row['rssi_mean'], random_row['rssi_min'])
+    
+    rssi_deg = rssi_degradation(random_row['rssi_mean'], random_row['rssi_median'])
+    
+    client_density_value = client_density(
+        random_row['wireless_clients_count'], random_row['wired_clients_count'], random_row['extenders'])
+    
+    client_load = client_load_per_extender(
+        random_row['rx_avg_bps'], random_row['tx_avg_bps'], random_row['extenders'])
+    
+    streaming_suitability_value = streaming_suitability(random_row['rx_avg_bps'], random_row['tx_avg_bps'])
+    
+    network_stability_value = network_stability(random_row['tx_max_bps'], random_row['rx_max_bps'])
+    
+    client_experience_value = client_experience(random_row['tx_avg_bps'], random_row['rx_avg_bps'])
 
     # Generate recommendations based on conditions
     if avg_throughput < 50_000:
@@ -85,12 +158,10 @@ def update_knowledge_base(random_row):
     return knowledge_base
 
 # Streamlit UI elements
-st.title("Bolt: Frontier's Internet Assistant")
-st.write("Hello! I'm Bolt, your friendly assistant from Frontier.\n"
-        "I'm here to help you find the best options for your internet needs. Whether you're looking for speed upgrades, "
-        "the perfect plan, or ways to improve your Wi-Fi, I've got you covered.\n"
-        "I also have a list of personalized recommendations based on your preferences, and I can provide more details "
-        "about each one whenever you're ready!\n"
+print("Bolt: Frontier's Internet Assistant")
+print("Hello! I'm Bolt, your friendly assistant from Frontier.\n"
+        "I'm here to help you find the best options for your internet needs. Whether you're looking for speed upgrades, the perfect plan, or ways to improve your Wi-Fi, I've got you covered.\n"
+        "I also have a list of personalized recommendations based on your preferences, and I can provide more details about each one whenever you're ready!\n"
         "Just ask, and I'll provide all the information you need. \n")
 
 # Load the dataset and preprocess it
@@ -100,13 +171,20 @@ new_customer_df = load_and_preprocess_data()
 random_row = new_customer_df.sample(n=1)
 
 # Display recommendations when the button is clicked
-if st.button('Get Recommendations'):
-    recommendations = get_recommendations(random_row.iloc[0])  # Get recommendations for the randomly selected row
-    if recommendations:
-        for rec in recommendations:
-            st.write(f"- {rec}")
-    else:
-        st.write("No specific recommendations at this moment.")
+recommendations = get_recommendations(random_row.iloc[0])  # Get recommendations for the randomly selected row
+history.append({"role": "user", "parts": recommendations})
+if recommendations:
+    print("Here are some recommendations based on your data:\n")
+    for rec in recommendations:
+        print(f"- {rec}")
+else:
+    print("No specific recommendations at this moment.")
+
+if feature_string == "":
+    x = True
+else:
+    feature_string += "so don't give recommendations on these UNLESS it is still an ugrade."
+    history.append({"role": "user", "parts": feature_string})
 
 knowledge_base = update_knowledge_base(random_row.iloc[0])
 
@@ -162,20 +240,25 @@ model = genai.GenerativeModel(
     system_instruction=system_instruction
 )
 
-history = []
 
 history.append({"role": "user", "parts": system_instruction})
 
+print()
+
 # Input from user for the chatbot
-user_input = st.text_input("Ask Bolt for assistance:")
+user_input = input("Ask Bolt for assistance:")
 
-if user_input:
-    # Initialize the model and start chat session
-    chat_session = model.start_chat(history=history)
-    response = chat_session.send_message(user_input)
-    model_response = response.text
-    history.append({"role": "user", "parts": [user_input]})
+while user_input:
 
-    # Display chatbot response
-    st.write(f"Netnavigator: {model_response}")
-    history.append({"role": "model", "parts": [model_response]})
+    if user_input:
+        # Initialize the model and start chat session
+        chat_session = model.start_chat(history=history)
+        response = chat_session.send_message(user_input)
+        model_response = response.text
+        history.append({"role": "user", "parts": [user_input]})
+    
+        # Display chatbot response
+        print(f"Netnavigator: {model_response}")
+        history.append({"role": "model", "parts": [model_response]})
+
+    user_input = input("Additional Questions:")
