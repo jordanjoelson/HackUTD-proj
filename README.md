@@ -1,1 +1,1 @@
-# HackUTD-proj
+# HackUTD-Proj-SmartCheck
