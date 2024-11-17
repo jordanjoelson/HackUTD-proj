@@ -1,4 +1,4 @@
-// src/pages/home.jsx
+// src/pages/Home.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Import Link for navigation
 
@@ -32,7 +32,7 @@ const Home = () => {
             <h1 className="text-6xl font-bold mb-4">Welcome to Our Website</h1>
             <p className="text-2xl mb-6">Your journey to excellence starts here.</p>
             <Link to="/login">
-              <button className="px-8 py-4 bg-[#FF0037] text-white rounded-[60px] hover:bg-red-600 transition duration-300">
+              <button className="px-8 py-4 bg-[#FF0037] text-white rounded-[60px] hover:bg-red-600 transition duration-300 text-[18px] font-bold uppercase">
                 Get Started
               </button>
             </Link>
@@ -41,10 +41,10 @@ const Home = () => {
       </section>
 
       {/* Why Us Section */}
-      <section id="why-us" className="min-h-[25vh] flex justify-center items-center bg-white text-black"> {/* Set height to half */}
-        <div className="bg-gray-100 border border-gray-300 rounded-[30px] p-8 shadow-lg max-w-[1248px] w-full text-center"> {/* Card styling */}
-          <h3 className="text-4xl font-bold mb-4">Why Us?</h3> {/* Heading for Why Us */}
-          <p className="text-xl"> {/* Increased font size */}
+      <section id="why-us" className="min-h-[25vh] flex justify-center items-center bg-white text-black">
+        <div className="bg-gray-100 border border-gray-300 rounded-[30px] p-8 shadow-lg max-w-[1248px] w-full text-center">
+          <h3 className="text-4xl font-bold mb-4">Why Us?</h3>
+          <p className="text-xl">
             Whether you are a startup looking for innovative solutions or an established business aiming for growth, we have the expertise to help you succeed.
           </p>
         </div>
@@ -54,13 +54,13 @@ const Home = () => {
       <section id="chatbot" className="chatbot min-h-screen bg-white text-black flex justify-center items-center">
         <div className="max-w-[1248px] w-full px-4 text-center">
           <h2 className="text-4xl font-bold mb-4">Meet Our Chatbot</h2>
-          <p className="text-xl mb-6"> {/* Increased font size */}
+          <p className="text-xl mb-6">
             Our intelligent chatbot is here to assist you 24/7. Whether you have questions about our services or need help navigating our website, our chatbot provides instant support.
           </p>
-          <p className="text-xl mb-6"> {/* Increased font size */}
+          <p className="text-xl mb-6">
             With advanced natural language processing capabilities, it understands your queries and delivers accurate responses in real-time.
           </p>
-          <p className="text-xl mb-6"> {/* Increased font size */}
+          <p className="text-xl mb-6">
             Experience seamless communication and get the information you need without waiting. Our chatbot is designed to enhance your experience and ensure satisfaction.
           </p>
         </div>
